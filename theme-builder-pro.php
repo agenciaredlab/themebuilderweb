@@ -135,7 +135,11 @@ final class Theme_Builder_Pro {
         // Admin
         if (is_admin()) {
             require_once TBP_PLUGIN_DIR . 'admin/class-admin.php';
+            require_once TBP_INCLUDES_DIR . 'admin/class-ajax-handlers.php';
         }
+
+        // Theme Compatibility
+        require_once TBP_INCLUDES_DIR . 'core/class-theme-compatibility.php';
     }
 
     /**

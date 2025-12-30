@@ -160,7 +160,7 @@ class TBP_Admin {
         wp_enqueue_style(
             'tbp-admin',
             TBP_ASSETS_URL . 'css/admin.css',
-            [],
+            ['wp-components'],
             TBP_VERSION
         );
 
@@ -168,22 +168,24 @@ class TBP_Admin {
         if (strpos($hook, 'tbp') !== false || strpos($hook, 'theme-builder') !== false) {
             wp_enqueue_style('wp-components');
             wp_enqueue_script('wp-api-fetch');
+            wp_enqueue_media();
 
             wp_enqueue_script(
-                'tbp-admin',
-                TBP_ASSETS_URL . 'js/admin/admin.js',
+                'tbp-admin-app',
+                TBP_ASSETS_URL . 'js/admin/admin-app.js',
                 ['jquery', 'wp-element', 'wp-components', 'wp-api-fetch'],
                 TBP_VERSION,
                 true
             );
 
-            wp_localize_script('tbp-admin', 'tbpAdmin', [
+            wp_localize_script('tbp-admin-app', 'tbpAdmin', [
                 'ajaxUrl' => admin_url('admin-ajax.php'),
                 'restUrl' => rest_url('tbp/v1/'),
                 'nonce' => wp_create_nonce('tbp_admin'),
                 'restNonce' => wp_create_nonce('wp_rest'),
                 'adminUrl' => admin_url(),
                 'pluginUrl' => TBP_PLUGIN_URL,
+                'editorUrl' => admin_url('post.php?action=tbp_editor'),
             ]);
         }
     }
