@@ -73,6 +73,11 @@ final class Theme_Builder_Pro {
     public $form_manager;
 
     /**
+     * Templates Library
+     */
+    public $templates_library;
+
+    /**
      * Get Instance
      */
     public static function instance() {
@@ -123,6 +128,9 @@ final class Theme_Builder_Pro {
         // Popup
         require_once TBP_INCLUDES_DIR . 'templates/class-popup-manager.php';
 
+        // Templates Library
+        require_once TBP_INCLUDES_DIR . 'templates/class-templates-library.php';
+
         // Forms
         require_once TBP_INCLUDES_DIR . 'forms/class-form-manager.php';
 
@@ -170,6 +178,7 @@ final class Theme_Builder_Pro {
         $this->theme_builder = new TBP_Theme_Builder();
         $this->popup_manager = new TBP_Popup_Manager();
         $this->form_manager = new TBP_Form_Manager();
+        $this->templates_library = new TBP_Templates_Library();
 
         // Initialize REST API
         new TBP_REST_API();
